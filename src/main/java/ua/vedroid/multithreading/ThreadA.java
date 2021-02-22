@@ -17,8 +17,8 @@ public class ThreadA extends Thread {
         String threadName = Thread.currentThread().getName();
         log.info(threadName + " is running...");
         while (counter.getNum() < MAX) {
-            counter.incrementNum();
-            log.info(threadName + " - " + counter.getNum());
+            int newValue = counter.incrementNumber();
+            log.info(threadName + " - " + newValue);
         }
     }
 }
