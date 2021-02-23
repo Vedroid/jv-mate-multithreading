@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%highlight{%d{HH:mm:ss.SSS} [%t]  %-5level %logger{36} - %msg%n}{FATAL=Bright Red, ERROR=Red, WARN=Yellow, INFO=Normal, DEBUG=Cyan, TRACE=Blue}"
+                    disableAnsi="false"/>
+        </Console>
+
+        <File name="File" fileName="multithreading.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="ua.vedroid.multithreading" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+    </Loggers>
+</Configuration>
