@@ -29,9 +29,8 @@ public class CustomRecursiveTask extends RecursiveTask<Long> {
                     .stream()
                     .mapToLong(ForkJoinTask::join)
                     .sum();
-        } else {
-            return processing(list);
         }
+        return processing(list);
     }
 
     private Collection<CustomRecursiveTask> createSubtasks(int threshold) {
