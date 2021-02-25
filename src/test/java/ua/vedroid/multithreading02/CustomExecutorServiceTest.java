@@ -16,7 +16,7 @@ class CustomExecutorServiceTest {
     @BeforeAll
     public static void beforeAll() {
         executorService = new CustomExecutorService();
-        longList = Util.getLongList();
+        longList = ListSupplier.getLongList();
     }
 
     @Test

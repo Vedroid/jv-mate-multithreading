@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import org.apache.commons.collections4.ListUtils;
 
 public class CustomExecutorService {
     public Long getSum(List<Long> list, int threshold) {
@@ -25,7 +26,7 @@ public class CustomExecutorService {
                 sum += future.get();
             }
         } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Thread execution exception", e);
         }
         executorService.shutdown();
         return sum;
@@ -33,10 +34,9 @@ public class CustomExecutorService {
 
     private List<Callable<Long>> getTasks(List<Long> list, int threshold) {
         List<Callable<Long>> callableTasks = new ArrayList<>();
-        List<List<Long>> choppedLists = Util.chopList(list, threshold);
+        List<List<Long>> choppedLists = ListUtils.partition(list, threshold);
         for (int i = 0; i < choppedLists.size(); i++) {
             int index = i;
-            Long reduce = choppedLists.get(index).stream().reduce(0L, Long::sum);
             callableTasks.add(
                     () -> choppedLists.get(index).stream().reduce(0L, Long::sum));
         }

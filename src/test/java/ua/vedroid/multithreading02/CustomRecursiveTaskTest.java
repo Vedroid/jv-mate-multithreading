@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ForkJoinPool;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ class CustomRecursiveTaskTest {
 
     @BeforeAll
     public static void beforeAll() {
-        longList = Util.getLongList();
+        longList = ListSupplier.getLongList();
     }
 
     @Test
